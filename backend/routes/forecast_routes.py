@@ -14,7 +14,9 @@ model_service = ModelService()
 model_service.load_models()
 data_processor = DataProcessor()
 
-OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY', '***REMOVED***')
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
+if not OPENWEATHER_API_KEY:
+    raise ValueError("OPENWEATHER_API_KEY environment variable is required")
 
 def fetch_7day_forecast(lat, lon):
     url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={OPENWEATHER_API_KEY}&units=metric"
