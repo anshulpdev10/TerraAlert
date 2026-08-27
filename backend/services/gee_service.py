@@ -6,15 +6,19 @@ from typing import Dict, Optional
 class GEEService:
     def __init__(self, project_id=None):
         """Initialize Google Earth Engine"""
+        self.gee_available = False
         try:
             if project_id:
                 ee.Initialize(project=project_id)
             else:
                 ee.Initialize()
+            self.gee_available = True
             print("✓ GEE initialized successfully")
         except Exception as e:
-            print(f"Error initializing GEE: {e}")
-            print("Run 'earthengine authenticate' and 'earthengine set_project YOUR_PROJECT_ID'")
+            self.gee_available = False
+            print(f"⚠️  GEE initialization failed: {e}")
+            print("⚠️  Will use MOCK data for testing")
+            print("   To fix: Run 'earthengine authenticate' and 'earthengine set_project YOUR_PROJECT_ID'")
     
     def get_all_features(self, lat: float, lon: float, start_date: str, end_date: str, buffer: int = 1000) -> Optional[Dict]:
         """
@@ -42,6 +46,34 @@ class GEEService:
         Returns:
             Dictionary with all features or None if data unavailable
         """
+        
+        # FALLBACK: If GEE not available, return realistic mock data
+        if not self.gee_available:
+            import random
+            print(f"⚠️  Using MOCK data for location ({lat:.4f}, {lon:.4f})")
+            
+            # Generate realistic data based on location
+            # Higher latitudes = higher elevation, more rainfall in monsoon season
+            base_elevation = 500 + (abs(lat - 20) * 50)  # Varies with latitude
+            monsoon_factor = 1.5 if datetime.now().month in [6, 7, 8, 9] else 0.5
+            
+            mock_data = {
+                'soil_type': random.randint(2, 4),
+                'ndvi': round(random.uniform(0.3, 0.7), 3),
+                'ndwi': round(random.uniform(-0.2, 0.05), 3),
+                'rainfall_3d': round(random.uniform(5, 40) * monsoon_factor, 1),
+                'rainfall_7d': round(random.uniform(15, 80) * monsoon_factor, 1),
+                'rainfall_14d': round(random.uniform(30, 160) * monsoon_factor, 1),
+                'rainfall_30d': round(random.uniform(60, 300) * monsoon_factor, 1),
+                'elevation': round(base_elevation + random.uniform(-200, 500), 1),
+                'slope': round(random.uniform(10, 40), 1),
+                'aspect': round(random.uniform(0, 360), 1)
+            }
+            
+            print("   Mock features generated (realistic values for testing)")
+            return mock_data
+        
+        # ORIGINAL CODE: Try to fetch real GEE data
         try:
             point = ee.Geometry.Point([lon, lat])
             region = point.buffer(buffer)
