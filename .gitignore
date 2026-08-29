@@ -41,13 +41,15 @@ backend/env/
 # ===== Node.js / Frontend =====
 node_modules/
 frontend/node_modules/
+mobile/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-package-lock.json
-yarn.lock
+# Note: Some teams ignore lock files, but it's better to commit them
+# package-lock.json
+# yarn.lock
 .pnpm-debug.log
 
 # Build outputs
@@ -56,6 +58,20 @@ dist-ssr/
 build/
 frontend/dist/
 frontend/build/
+mobile/android/app/build/
+mobile/android/build/
+mobile/ios/build/
+mobile/ios/Pods/
+
+# ===== React Native / Mobile =====
+mobile/.expo/
+mobile/.expo-shared/
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/ios/Pods/
+mobile/*.jsbundle
+mobile/.metro-health-check*
+mobile/Podfile.lock
 
 # ===== Environment Variables =====
 .env
@@ -66,6 +82,13 @@ frontend/build/
 .env.production.local
 backend/.env
 frontend/.env
+mobile/.env
+
+# Keep example/template env files
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+!mobile/.env.development
 
 # ===== IDE / Editors =====
 .vscode/

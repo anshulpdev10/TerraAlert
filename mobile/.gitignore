@@ -1,0 +1,183 @@
+# ========================================
+# REACT NATIVE - COMPREHENSIVE .GITIGNORE
+# ========================================
+
+# ===== OSX =====
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ===== Xcode / iOS =====
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+project.xcworkspace
+
+# CocoaPods
+ios/Pods/
+**/Pods/
+/vendor/bundle/
+Podfile.lock
+
+# ===== Android / IntelliJ =====
+android/build/
+android/app/build/
+android/.gradle/
+.idea/
+.gradle/
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+!release.keystore
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# ===== Node =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Note: Lock files ensure consistent dependency versions
+# Uncomment below if you want to ignore them (not recommended)
+# package-lock.json
+# yarn.lock
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# ===== React Native =====
+# Bundle artifact
+*.jsbundle
+
+# Metro bundler
+.metro-health-check*
+.metro-health-check-*
+
+# Temporary files
+.tmp/
+tmp/
+
+# ===== Environment Variables =====
+# Keep example files, ignore actual env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+!.env.development
+
+# ===== Testing =====
+/coverage
+*.lcov
+.nyc_output
+
+# ===== Fastlane =====
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+fastlane/README.md
+
+# ===== VSCode =====
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ===== Logs =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ===== Buck =====
+buck-out/
+.buckconfig.local
+.buckd/
+
+# ===== Watchman =====
+.watchmanconfig
+
+# ===== Expo (if ever used) =====
+.expo/
+.expo-shared/
+
+# ===== Misc =====
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# ===== Archives =====
+*.tar.gz
+*.zip
+*.7z
+
+# ===== Documentation =====
+# Keep planning docs, ignore generated docs
+docs/generated/
+
+# ===== Release Files =====
+android/app/release/
+ios/build/
+*.mobileprovision
+*.p12
+*.cer
+
+# ===== Source Maps =====
+*.map
+!metro.config.js.map
+
+# ===== Build Artifacts =====
+dist/
+build/
+*.tgz
+
+# ===== Secrets & Keys =====
+# IMPORTANT: Never commit these!
+google-services.json
+GoogleService-Info.plist
+*.pem
+*.p8
+*.p12
+credentials.json
+secrets.json
+
+# ===== Generated Files =====
+# Ruby
+Gemfile.lock
+
+# TypeScript
+*.tsbuildinfo
